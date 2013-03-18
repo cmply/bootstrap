@@ -1,0 +1,5 @@
+NameError: .clearfix is undefined in /Users/michael/projects/cmply/bootstrap/less/button-groups.less:8:2
+7   position: relative;
+8   .clearfix(); // clears the floated buttons
+9   .ie7-restore-left-whitespace();
+

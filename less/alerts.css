@@ -1,0 +1,5 @@
+NameError: variable @baseLineHeight is undefined in /Users/michael/projects/cmply/bootstrap/less/alerts.less:7:17
+6   padding: 8px 35px 8px 14px;
+7   margin-bottom: @baseLineHeight;
+8   text-shadow: 0 1px 0 rgba(255,255,255,.5);
+

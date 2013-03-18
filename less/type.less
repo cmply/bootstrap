@@ -27,7 +27,7 @@ p {
 // --------
 
 h1, h2, h3, h4, h5, h6 {
-  margin: 0;
+  margin: 10px 0;
   font-family: @headingsFontFamily;
   font-weight: @headingsFontWeight;
   color: @headingsColor;
@@ -40,22 +40,27 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: 30px;
   line-height: @baseLineHeight * 2;
+  font-weight:normal;
   small {
     font-size: 18px;
   }
 }
 h2 {
   font-size: 24px;
-  line-height: @baseLineHeight * 2;
+  line-height: 36px;
   small {
     font-size: 18px;
   }
 }
 h3 {
   font-size: 18px;
-  line-height: @baseLineHeight * 1.5;
+  line-height: 20px;
   small {
-    font-size: 14px;
+    font-size: 14px;line-height:16px;
+
+    a{
+      font-size:11px;line-height:13px;
+    }
   }
 }
 h4, h5, h6 {

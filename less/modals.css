@@ -1,0 +1,5 @@
+NameError: variable @zindexDropdown is undefined in /Users/michael/projects/cmply/bootstrap/less/modals.less:6:29
+5 .modal-open {
+6   .dropdown-menu {  z-index: @zindexDropdown + @zindexModal; }
+7   .dropdown.open { *z-index: @zindexDropdown + @zindexModal; }
+
