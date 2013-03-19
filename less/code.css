@@ -1,5 +1,0 @@
-NameError: #font > #family > .monospace is undefined in /Users/michael/projects/cmply/bootstrap/less/code.less:9:2
-8   padding: 0 3px 2px;
-9   #font > #family > .monospace;
-10   font-size: @baseFontSize - 1;
-
