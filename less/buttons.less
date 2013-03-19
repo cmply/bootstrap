@@ -8,17 +8,19 @@
 
 // Core
 .btn {
+  text-shadow: none;
   display: inline-block;
   .ie7-inline-block();
   padding: 4px 12px;
   margin-bottom: 0; // For input.btn
   font-size: @baseFontSize;
+  font-weight: 600;
   line-height: @baseLineHeight;
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
   .buttonBackground(@btnBackground, @btnBackground, @grayDark, 0 1px 1px rgba(255,255,255,.75));
-  border: 1px solid @btnBorder;
+  border: 0;
   *border: 0; // Remove the border to prevent IE7's black border on input:focus
   border-bottom-color: darken(@btnBorder, 10%);
   .border-radius(@baseBorderRadius);
@@ -58,7 +60,6 @@
     .opacity(65);
     ////.box-shadow(none);
   }
-
 }
 
 
@@ -231,6 +232,7 @@ input[type="submit"].btn {
   ////.box-shadow(none);
 }
 .btn-link {
+  font-weight: normal;
   border-color: transparent;
   cursor: pointer;
   color: @linkColor;
@@ -246,4 +248,106 @@ input[type="submit"].btn {
 .btn-link[disabled]:focus {
   color: @grayDark;
   text-decoration: none;
+}
+
+// Flat UI compatibility changes
+// --------------------------------------------------
+.btn{
+  text-shadow: none;
+}
+
+.btn:hover[disabled], .btn:hover.disabled{
+  background-color: @btnBackground;
+}
+.btn-primary:hover[disabled], .btn-primary:hover.disabled{
+  .buttonBackground(@btnPrimaryBackground, @btnPrimaryBackground);
+}
+// Warning appears are orange
+.btn-warning:hover[disabled], .btn-warning:hover.disabled{
+  .buttonBackground(@btnWarningBackground, @btnWarningBackground);
+}
+// Danger and error appear as red
+.btn-danger:hover[disabled], .btn-danger:hover.disabled{
+  .buttonBackground(@btnDangerBackground, @btnDangerBackground);
+}
+// Success appears as green
+.btn-success:hover[disabled], .btn-success:hover.disabled{
+  .buttonBackground(@btnSuccessBackground, @btnSuccessBackground);
+}
+// Info appears as a neutral blue
+.btn-info:hover[disabled], .btn-info:hover.disabled{
+  .buttonBackground(@btnInfoBackground, @btnInfoBackground);
+}
+// Inverse appears as dark gray
+.btn-inverse:hover[disabled], .btn-inverse:hover.disabled{
+  .buttonBackground(@btnInverseBackground, @btnInverseBackground);
+}
+
+.btn:hover,
+.btn:hover:hover,
+.btn:hover:focus,
+.btn:hover:active,
+.btn:hover.active,
+.btn:hover.disabled,
+.btn:hover[disabled]{
+  color: @grayDark;
+  text-shadow: none;
+  background-image: none;
+}
+
+.btn-primary:hover,
+.btn-primary:hover:hover,
+.btn-primary:hover:focus,
+.btn-primary:hover:active,
+.btn-primary:hover.active,
+.btn-primary:hover.disabled,
+.btn-primary:hover[disabled],
+.btn-info:hover,
+.btn-info:hover:hover,
+.btn-info:hover:focus,
+.btn-info:hover:active,
+.btn-info:hover.active,
+.btn-info:hover.disabled,
+.btn-info:hover[disabled],
+.btn-success:hover,
+.btn-success:hover:hover,
+.btn-success:hover:focus,
+.btn-success:hover:active,
+.btn-success:hover.active,
+.btn-success:hover.disabled,
+.btn-success:hover[disabled],
+.btn-warning:hover,
+.btn-warning:hover:hover,
+.btn-warning:hover:focus,
+.btn-warning:hover:active,
+.btn-warning:hover.active,
+.btn-warning:hover.disabled,
+.btn-warning:hover[disabled],
+.btn-danger:hover,
+.btn-danger:hover:hover,
+.btn-danger:hover:focus,
+.btn-danger:hover:active,
+.btn-danger:hover.active,
+.btn-danger:hover.disabled,
+.btn-danger:hover[disabled],
+.btn-inverse:hover,
+.btn-inverse:hover:hover,
+.btn-inverse:hover:focus,
+.btn-inverse:hover:active,
+.btn-inverse:hover.active,
+.btn-inverse:hover.disabled,
+.btn-inverse:hover[disabled]{
+  color: @white;
+  text-shadow: none;
+  background-image: none;
+}
+
+.btn:focus{
+  outline: none;
+}
+
+.btn-link:hover, .btn-link:hover:hover{
+  background-color: transparent;
+  background-image: none;
+  color: @linkColorHover;
 }
