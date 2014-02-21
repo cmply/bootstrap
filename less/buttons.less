@@ -6,110 +6,142 @@
 // Base styles
 // --------------------------------------------------
 
-// Core
 .btn {
-  text-shadow: none;
   display: inline-block;
-  .ie7-inline-block();
-  padding: 5px 12px;
   margin-bottom: 0; // For input.btn
-  font-size: @baseFontSize;
-  font-weight: 600;
-  line-height: @baseLineHeight;
+  font-weight: @btn-font-weight;
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
-  .buttonBackground(@btnBackground, @btnBackground, @grayDark, 0 1px 1px rgba(255,255,255,.75));
-  border: 0;
-  *border: 0; // Remove the border to prevent IE7's black border on input:focus
-  border-bottom-color: darken(@btnBorder, 10%);
-  .border-radius(@baseBorderRadius);
-  .ie7-restore-left-whitespace(); // Give IE7 some love
-  ////.box-shadow(~"inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05)");
+  background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+  border: 1px solid transparent;
+  white-space: nowrap;
+  .button-size(@padding-base-vertical; @padding-base-horizontal; @font-size-base; @line-height-base; @border-radius-base);
+  .user-select(none);
 
-  // Hover/focus state
+  &,
+  &:active,
+  &.active {
+    &:focus {
+      .tab-focus();
+    }
+  }
+
   &:hover,
   &:focus {
-    color: @grayDark;
+    color: @btn-default-color;
     text-decoration: none;
-    background-position: 0 -15px;
-
-    // transition is only when going to hover/focus, otherwise the background
-    // behind the gradient (there for IE<=9 fallback) gets mismatched
-    .transition(background-position .1s linear);
   }
 
-  // Focus state for keyboard and accessibility
-  &:focus {
-    .tab-focus();
-  }
-
-  // Active state
-  &.active,
-  &:active {
-    background-image: none;
+  &:active,
+  &.active {
     outline: 0;
-    ////.box-shadow(~"inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05)");
+    background-image: none;
+    .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
   }
 
-  // Disabled state
   &.disabled,
-  &[disabled] {
-    cursor: default;
-    background-image: none;
-    .opacity(65);
-    ////.box-shadow(none);
+  &[disabled],
+  fieldset[disabled] & {
+    cursor: not-allowed;
+    pointer-events: none; // Future-proof disabling of clicks
+    .opacity(.65);
+    .box-shadow(none);
   }
 }
 
+
+// Alternate buttons
+// --------------------------------------------------
+
+.btn-default {
+  .button-variant(@btn-default-color; @btn-default-bg; @btn-default-border);
+}
+.btn-primary {
+  .button-variant(@btn-primary-color; @btn-primary-bg; @btn-primary-border);
+}
+// Success appears as green
+.btn-success {
+  .button-variant(@btn-success-color; @btn-success-bg; @btn-success-border);
+}
+// Info appears as blue-green
+.btn-info {
+  .button-variant(@btn-info-color; @btn-info-bg; @btn-info-border);
+}
+// Warning appears as orange
+.btn-warning {
+  .button-variant(@btn-warning-color; @btn-warning-bg; @btn-warning-border);
+}
+// Danger and error appear as red
+.btn-danger {
+  .button-variant(@btn-danger-color; @btn-danger-bg; @btn-danger-border);
+}
+
+
+// Link buttons
+// -------------------------
+
+// Make a button look and behave like a link
+.btn-link {
+  color: @link-color;
+  font-weight: normal;
+  cursor: pointer;
+  border-radius: 0;
+
+  &,
+  &:active,
+  &[disabled],
+  fieldset[disabled] & {
+    background-color: transparent;
+    .box-shadow(none);
+  }
+  &,
+  &:hover,
+  &:focus,
+  &:active {
+    border-color: transparent;
+  }
+  &:hover,
+  &:focus {
+    color: @link-hover-color;
+    text-decoration: underline;
+    background-color: transparent;
+  }
+  &[disabled],
+  fieldset[disabled] & {
+    &:hover,
+    &:focus {
+      color: @btn-link-disabled-color;
+      text-decoration: none;
+    }
+  }
+}
 
 
 // Button Sizes
 // --------------------------------------------------
 
-// Large
-.btn-large {
-  padding: @paddingLarge;
-  font-size: @fontSizeLarge;
-  .border-radius(@borderRadiusLarge);
+.btn-lg {
+  // line-height: ensure even-numbered height of button next to large input
+  .button-size(@padding-large-vertical; @padding-large-horizontal; @font-size-large; @line-height-large; @border-radius-large);
 }
-.btn-large [class^="icon-"],
-.btn-large [class*=" icon-"] {
-  margin-top: 4px;
+.btn-sm {
+  // line-height: ensure proper height of button next to small input
+  .button-size(@padding-small-vertical; @padding-small-horizontal; @font-size-small; @line-height-small; @border-radius-small);
 }
-
-// Small
-.btn-small {
-  padding: @paddingSmall;
-  font-size: @fontSizeSmall;
-  .border-radius(@borderRadiusSmall);
-}
-.btn-small [class^="icon-"],
-.btn-small [class*=" icon-"] {
-  margin-top: 0;
-}
-.btn-mini [class^="icon-"],
-.btn-mini [class*=" icon-"] {
-  margin-top: -1px;
-}
-
-// Mini
-.btn-mini {
-  padding: @paddingMini;
-  font-size: @fontSizeMini;
-  .border-radius(@borderRadiusSmall);
+.btn-xs {
+  .button-size(@padding-xs-vertical; @padding-xs-horizontal; @font-size-small; @line-height-small; @border-radius-small);
 }
 
 
 // Block button
-// -------------------------
+// --------------------------------------------------
 
 .btn-block {
   display: block;
   width: 100%;
   padding-left: 0;
   padding-right: 0;
-  .box-sizing(border-box);
 }
 
 // Vertically space out multiple block buttons
@@ -124,230 +156,4 @@ input[type="button"] {
   &.btn-block {
     width: 100%;
   }
-}
-
-
-
-// Alternate buttons
-// --------------------------------------------------
-
-// Provide *some* extra contrast for those who can get it
-.btn-primary.active,
-.btn-warning.active,
-.btn-danger.active,
-.btn-success.active,
-.btn-info.active,
-.btn-inverse.active {
-  color: rgba(255,255,255,.75);
-}
-
-// Set the backgrounds
-// -------------------------
-.btn:hover{
-  .buttonBackground(@btnBackgroundHighlight,@btnBackgroundHighlight);
-}
-.btn-primary {
-  .buttonBackground(@btnPrimaryBackground, @btnPrimaryBackground);
-}
-.btn-primary:hover{
-  .buttonBackground(@btnPrimaryBackgroundHighlight, @btnPrimaryBackgroundHighlight);
-}
-// Warning appears are orange
-.btn-warning {
-  .buttonBackground(@btnWarningBackground, @btnWarningBackground);
-}
-.btn-warning:hover {
-  .buttonBackground(@btnWarningBackgroundHighlight, @btnWarningBackgroundHighlight);
-}
-// Danger and error appear as red
-.btn-danger {
-  .buttonBackground(@btnDangerBackground, @btnDangerBackground);
-}
-.btn-danger:hover {
-  .buttonBackground(@btnDangerBackgroundHighlight, @btnDangerBackgroundHighlight);
-}
-// Success appears as green
-.btn-success {
-  .buttonBackground(@btnSuccessBackground, @btnSuccessBackground);
-}
-.btn-success:hover {
-  .buttonBackground(@btnSuccessBackgroundHighlight, @btnSuccessBackgroundHighlight);
-}
-
-// Info appears as a neutral blue
-.btn-info {
-  .buttonBackground(@btnInfoBackground, @btnInfoBackground);
-}
-.btn-info:hover {
-  .buttonBackground(@btnInfoBackgroundHighlight, @btnInfoBackgroundHighlight);
-}
-// Inverse appears as dark gray
-.btn-inverse {
-  .buttonBackground(@btnInverseBackground, @btnInverseBackground);
-}.btn-inverse:hover {
-   .buttonBackground(@btnInverseBackgroundHighlight, @btnInverseBackgroundHighlight);
- }
-
-
-// Cross-browser Jank
-// --------------------------------------------------
-
-button.btn,
-input[type="submit"].btn {
-
-  // Firefox 3.6 only I believe
-  &::-moz-focus-inner {
-    padding: 0;
-    border: 0;
-  }
-
-  // IE7 has some default padding on button controls
-  *padding-top: 3px;
-  *padding-bottom: 3px;
-
-  &.btn-large {
-    *padding-top: 7px;
-    *padding-bottom: 7px;
-  }
-  &.btn-small {
-    *padding-top: 3px;
-    *padding-bottom: 3px;
-  }
-  &.btn-mini {
-    *padding-top: 1px;
-    *padding-bottom: 1px;
-  }
-}
-
-
-// Link buttons
-// --------------------------------------------------
-
-// Make a button look and behave like a link
-.btn-link,
-.btn-link:active,
-.btn-link[disabled] {
-  background-color: transparent;
-  background-image: none;
-  ////.box-shadow(none);
-}
-.btn-link {
-  font-weight: normal;
-  border-color: transparent;
-  cursor: pointer;
-  color: @linkColor;
-  .border-radius(0);
-}
-.btn-link:hover,
-.btn-link:focus {
-  color: @linkColorHover;
-  text-decoration: underline;
-  background-color: transparent;
-}
-.btn-link[disabled]:hover,
-.btn-link[disabled]:focus {
-  color: @grayDark;
-  text-decoration: none;
-}
-
-// Flat UI compatibility changes
-// --------------------------------------------------
-.btn{
-  text-shadow: none;
-}
-
-.btn:hover[disabled], .btn:hover.disabled{
-  background-color: @btnBackground;
-}
-.btn-primary:hover[disabled], .btn-primary:hover.disabled{
-  .buttonBackground(@btnPrimaryBackground, @btnPrimaryBackground);
-}
-// Warning appears are orange
-.btn-warning:hover[disabled], .btn-warning:hover.disabled{
-  .buttonBackground(@btnWarningBackground, @btnWarningBackground);
-}
-// Danger and error appear as red
-.btn-danger:hover[disabled], .btn-danger:hover.disabled{
-  .buttonBackground(@btnDangerBackground, @btnDangerBackground);
-}
-// Success appears as green
-.btn-success:hover[disabled], .btn-success:hover.disabled{
-  .buttonBackground(@btnSuccessBackground, @btnSuccessBackground);
-}
-// Info appears as a neutral blue
-.btn-info:hover[disabled], .btn-info:hover.disabled{
-  .buttonBackground(@btnInfoBackground, @btnInfoBackground);
-}
-// Inverse appears as dark gray
-.btn-inverse:hover[disabled], .btn-inverse:hover.disabled{
-  .buttonBackground(@btnInverseBackground, @btnInverseBackground);
-}
-
-.btn:hover,
-.btn:hover:hover,
-.btn:hover:focus,
-.btn:hover:active,
-.btn:hover.active,
-.btn:hover.disabled,
-.btn:hover[disabled]{
-  color: @grayDark;
-  text-shadow: none;
-  background-image: none;
-}
-
-.btn-primary:hover,
-.btn-primary:hover:hover,
-.btn-primary:hover:focus,
-.btn-primary:hover:active,
-.btn-primary:hover.active,
-.btn-primary:hover.disabled,
-.btn-primary:hover[disabled],
-.btn-info:hover,
-.btn-info:hover:hover,
-.btn-info:hover:focus,
-.btn-info:hover:active,
-.btn-info:hover.active,
-.btn-info:hover.disabled,
-.btn-info:hover[disabled],
-.btn-success:hover,
-.btn-success:hover:hover,
-.btn-success:hover:focus,
-.btn-success:hover:active,
-.btn-success:hover.active,
-.btn-success:hover.disabled,
-.btn-success:hover[disabled],
-.btn-warning:hover,
-.btn-warning:hover:hover,
-.btn-warning:hover:focus,
-.btn-warning:hover:active,
-.btn-warning:hover.active,
-.btn-warning:hover.disabled,
-.btn-warning:hover[disabled],
-.btn-danger:hover,
-.btn-danger:hover:hover,
-.btn-danger:hover:focus,
-.btn-danger:hover:active,
-.btn-danger:hover.active,
-.btn-danger:hover.disabled,
-.btn-danger:hover[disabled],
-.btn-inverse:hover,
-.btn-inverse:hover:hover,
-.btn-inverse:hover:focus,
-.btn-inverse:hover:active,
-.btn-inverse:hover.active,
-.btn-inverse:hover.disabled,
-.btn-inverse:hover[disabled]{
-  color: @white;
-  text-shadow: none;
-  background-image: none;
-}
-
-.btn:focus{
-  outline: none;
-}
-
-.btn-link:hover, .btn-link:hover:hover{
-  background-color: transparent;
-  background-image: none;
-  color: @linkColorHover;
 }
