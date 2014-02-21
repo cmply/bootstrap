@@ -20,5 +20,6 @@
   ],
   "dependencies": {
     "jquery": ">= 1.9.0"
-  }
+  },
+  "private": true
 }
