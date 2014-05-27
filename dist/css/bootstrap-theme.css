@@ -4,8 +4,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:600,400');
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:600,400');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:700,600,400,300');
 .btn-default,
 .btn-primary,
 .btn-success,
@@ -37,23 +36,23 @@
 }
 .btn-default {
   text-shadow: 0 1px 0 #fff;
-  background-image: -webkit-linear-gradient(top, #eee 0%, #cfcfcf 100%);
-  background-image:         linear-gradient(to bottom, #eee 0%, #cfcfcf 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffeeeeee', endColorstr='#ffcfcfcf', GradientType=0);
+  background-image: -webkit-linear-gradient(top, #d9d9d9 0%, #bababa 100%);
+  background-image:         linear-gradient(to bottom, #d9d9d9 0%, #bababa 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd9d9d9', endColorstr='#ffbababa', GradientType=0);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   background-repeat: repeat-x;
-  border-color: #cacaca;
+  border-color: #b5b5b5;
   border-color: #ccc;
 }
 .btn-default:hover,
 .btn-default:focus {
-  background-color: #cfcfcf;
+  background-color: #bababa;
   background-position: 0 -15px;
 }
 .btn-default:active,
 .btn-default.active {
-  background-color: #cfcfcf;
-  border-color: #cacaca;
+  background-color: #bababa;
+  border-color: #b5b5b5;
 }
 .btn-primary {
   background-image: -webkit-linear-gradient(top, #f79826 0%, #d87908 100%);
