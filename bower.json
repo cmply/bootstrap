@@ -1,6 +1,6 @@
 {
   "name": "cmply_bootstrap",
-  "version": "3.1.1-CMPLY-05272014",
+  "version": "3.1.1-CMPLY-05272014-2",
   "main": [
     "./dist/css/bootstrap.css",
     "./dist/js/bootstrap.js",
