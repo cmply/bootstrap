@@ -2,7 +2,7 @@
  * Bootstrap's Gruntfile
  * http://getbootstrap.com
  * Copyright 2013-2014 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE) test
  */
 
 module.exports = function (grunt) {
@@ -89,7 +89,6 @@ module.exports = function (grunt) {
         'docs/examples/**/*.css'
       ]
     },
-
     concat: {
       options: {
         banner: '<%= banner %>\n<%= jqueryCheck %>',
